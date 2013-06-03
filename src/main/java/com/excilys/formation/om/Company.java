@@ -1,11 +1,14 @@
 package com.excilys.formation.om;
 
-public class Company {
+import java.io.Serializable;
+
+public class Company implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3697894746473059054L;
 	private long companyId;
 	private String name;
-
-	public Company() {
-	}
 
 	public long getCompanyId() {
 		return companyId;
@@ -22,6 +25,7 @@ public class Company {
 	public void setName(String name) {
 		this.name = name;
 	}
+
 
 	@Override
 	public int hashCode() {

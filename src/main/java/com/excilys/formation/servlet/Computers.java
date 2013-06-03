@@ -28,11 +28,13 @@ import com.excilys.formation.utils.Var;
 @WebServlet("/computers")
 public class Computers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ComputerDatabaseService computerDatabaseService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Computers() {
+		computerDatabaseService = new ComputerDatabaseServiceImpl();
 	}
 
 	/**
@@ -41,7 +43,6 @@ public class Computers extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		ComputerDatabaseService computerDatabaseService = new ComputerDatabaseServiceImpl();
 		HttpSession session = request.getSession(true);
 		if (session.getAttribute("newComputer") != null) {
 			request.setAttribute("newComputer",
@@ -142,7 +143,7 @@ public class Computers extends HttpServlet {
 			int nbComputers = computerDatabaseService.countComputers(f);
 			session.setAttribute("nbComputers", nbComputers);
 			session.setAttribute("maxcomputer", pLimit + Var.MAXCOMPUTER);
-			session.setAttribute("indexcomputer", pLimit + 1 );
+			session.setAttribute("indexcomputer", pLimit + 1);
 			params.concatPrevUrl("\"");
 			params.concatNextUrl("\"");
 			if (p == 0) {
@@ -168,7 +169,6 @@ public class Computers extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		ComputerDatabaseService computerDatabaseService = new ComputerDatabaseServiceImpl();
 		HttpSession session = request.getSession();
 		Errors errors = new Errors();
 		String mode = (String) session.getAttribute("mode");
@@ -196,10 +196,10 @@ public class Computers extends HttpServlet {
 			discontinued = (Timestamp) discontinuedReturn;
 		}
 
-		long company_id = 0;
+		Long company_id = null;
 		if (request.getParameter("company.id") != null
 				&& !request.getParameter("company.id").isEmpty()) {
-			company_id = Integer.parseInt(request.getParameter("company.id"));
+			company_id = Long.parseLong(request.getParameter("company.id"));
 		}
 
 		session.setAttribute("errors", errors);
@@ -214,8 +214,11 @@ public class Computers extends HttpServlet {
 		} else {
 			Computer computer = new Computer();
 			try {
-				Company company = computerDatabaseService
-						.getCompanyById(company_id);
+				Company company = null;
+				if (company_id != null) {
+					company = computerDatabaseService
+							.getCompanyById(company_id);
+				}
 				computer.setName(name);
 				computer.setIntroduced(introduced);
 				computer.setDiscontinued(discontinued);

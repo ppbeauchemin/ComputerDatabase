@@ -21,11 +21,13 @@ import com.excilys.formation.utils.Var;
 @WebServlet("/update")
 public class Update extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ComputerDatabaseService computerDatabaseService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Update() {
+		computerDatabaseService = new ComputerDatabaseServiceImpl();
 	}
 
 	/**
@@ -34,9 +36,8 @@ public class Update extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		ComputerDatabaseService computerDatabaseService = new ComputerDatabaseServiceImpl();
 		HttpSession session = request.getSession();
-		long computerId = Integer.parseInt(request.getParameter("computerId"));
+		long computerId = Long.parseLong(request.getParameter("computerId"));
 		Computer computer = new Computer();
 		try {
 			computer = computerDatabaseService.getComputerById(computerId);

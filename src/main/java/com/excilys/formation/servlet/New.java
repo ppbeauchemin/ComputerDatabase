@@ -23,11 +23,13 @@ import com.excilys.formation.utils.Var;
 @WebServlet("/new")
 public class New extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ComputerDatabaseService computerDatabaseService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public New() {
+		computerDatabaseService = new ComputerDatabaseServiceImpl();
 	}
 
 	/**
@@ -36,7 +38,6 @@ public class New extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		ComputerDatabaseService computerDatabaseService = new ComputerDatabaseServiceImpl();
 		HttpSession session = request.getSession(true);
 		@SuppressWarnings("unchecked")
 		List<Company> companies = (List<Company>) session

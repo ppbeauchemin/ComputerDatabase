@@ -155,6 +155,4 @@ public class Params {
 				+ nextUrl + ", nextDisabled=" + nextDisabled + "]";
 	}
 
-	
-	
 }

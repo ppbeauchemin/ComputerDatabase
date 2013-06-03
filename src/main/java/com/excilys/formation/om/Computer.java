@@ -1,16 +1,18 @@
 package com.excilys.formation.om;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Computer {
+public class Computer implements Serializable {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -1837900460007604101L;
 	private long computerId;
 	private String name;
 	private Timestamp introduced;
 	private Timestamp discontinued;
 	private Company company;
-
-	public Computer() {
-	}
 
 	public long getComputerId() {
 		return computerId;

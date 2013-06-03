@@ -20,11 +20,13 @@ import com.excilys.formation.utils.Var;
 @WebServlet("/delete")
 public class Delete extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private ComputerDatabaseService computerDatabaseService;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public Delete() {
+		computerDatabaseService = new ComputerDatabaseServiceImpl();
 	}
 
 	/**
@@ -41,9 +43,9 @@ public class Delete extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		ComputerDatabaseService computerDatabaseService = new ComputerDatabaseServiceImpl();
+		
 		HttpSession session = request.getSession();
-		long computerId = Integer.parseInt(request.getParameter("computerId"));
+		long computerId = Long.parseLong(request.getParameter("computerId"));
 		try {
 			computerDatabaseService.deleteComputerById(computerId);
 		} catch (ClassNotFoundException | SQLException e) {
