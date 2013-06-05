@@ -3,6 +3,9 @@ package com.excilys.formation.service.impl;
 import java.sql.SQLException;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.excilys.formation.dao.CompanyDao;
 import com.excilys.formation.dao.ComputerDao;
 import com.excilys.formation.dao.impl.CompanyDaoImpl;
@@ -11,8 +14,11 @@ import com.excilys.formation.om.Company;
 import com.excilys.formation.om.Computer;
 import com.excilys.formation.service.ComputerDatabaseService;
 
+@Service
 public class ComputerDatabaseServiceImpl implements ComputerDatabaseService {
+	@Autowired
 	private CompanyDao companyDao;
+	@Autowired
 	private ComputerDao computerDao;
 
 	public ComputerDatabaseServiceImpl() {

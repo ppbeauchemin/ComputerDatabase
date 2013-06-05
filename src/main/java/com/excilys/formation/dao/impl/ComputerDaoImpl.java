@@ -7,11 +7,14 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.excilys.formation.conn.Conn;
 import com.excilys.formation.dao.ComputerDao;
 import com.excilys.formation.om.Company;
 import com.excilys.formation.om.Computer;
 
+@Repository
 public class ComputerDaoImpl implements ComputerDao {
 	private Connection conn;
 

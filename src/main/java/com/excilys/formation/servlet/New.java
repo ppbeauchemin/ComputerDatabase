@@ -38,7 +38,7 @@ public class New extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		HttpSession session = request.getSession(true);
+		HttpSession session = request.getSession();
 		@SuppressWarnings("unchecked")
 		List<Company> companies = (List<Company>) session
 				.getAttribute("companies");

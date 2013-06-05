@@ -7,10 +7,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import com.excilys.formation.conn.Conn;
 import com.excilys.formation.dao.CompanyDao;
 import com.excilys.formation.om.Company;
 
+@Repository
 public class CompanyDaoImpl implements CompanyDao {
 	private Connection conn;
 
