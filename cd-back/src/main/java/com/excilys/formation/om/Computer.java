@@ -87,12 +87,12 @@ public class Computer implements Serializable {
 		if (discontinued == null) {
 			if (other.discontinued != null)
 				return false;
-		} else if (!discontinued.equals(other.discontinued))
+		} else if (!discontinued.toString().equals(other.discontinued.toString()))
 			return false;
 		if (introduced == null) {
 			if (other.introduced != null)
 				return false;
-		} else if (!introduced.equals(other.introduced))
+		} else if (!introduced.toString().equals(other.introduced.toString()))
 			return false;
 		if (name == null) {
 			if (other.name != null)
