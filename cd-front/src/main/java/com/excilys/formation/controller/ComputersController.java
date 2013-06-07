@@ -187,9 +187,9 @@ public class ComputersController {
 
 		if (errors.isError()) {
 			if (mode.equals(Var.CREATED)) {
-				return "new";
+				return "new.htm";
 			} else if (mode.equals(Var.UPDATED)) {
-				return "update?computerId="
+				return "update.htm?computerId="
 						+ session.getAttribute("computerId");
 			}
 		} else {

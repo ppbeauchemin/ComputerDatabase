@@ -15,7 +15,7 @@
 
 	<header class="topbar">
 	<h1 class="fill">
-		<a href="computers">Play 2.0 sample application &mdash; Computer
+		<a href="computers.htm">Play 2.0 sample application &mdash; Computer
 			database</a>
 	</h1>
 	</header>
@@ -31,26 +31,26 @@
 	</c:if>
 
 	<div id="actions">
-		<form action="computers" method="GET">
+		<form action="computers.htm" method="GET">
 			<input type="search" id="searchbox" name="f" value=""
 				placeholder="Filter by computer name..."> <input
 				type="submit" id="searchsubmit" value="Filter by name"
 				class="btn primary">
 		</form>
-		<a class="btn success" id="add" href="new">Add a new computer</a>
+		<a class="btn success" id="add" href="new.htm">Add a new computer</a>
 	</div>
 
 	<table class="computers zebra-striped">
 		<thead>
 			<tr>
 				<th class="name header ${params.nameHeader}"><a
-					href="computers${params.name}">Computer name</a></th>
+					href="computers.htm${params.name}">Computer name</a></th>
 				<th class="introduced header ${params.introducedHeader}"><a
-					href="computers${params.introduced}">Introduced</a></th>
+					href="computers.htm${params.introduced}">Introduced</a></th>
 				<th class="discontinued header ${params.discontinuedHeader}"><a
-					href="computers${params.discontinued}">Discontinued</a></th>
+					href="computers.htm${params.discontinued}">Discontinued</a></th>
 				<th class="company_name header ${params.companyNameHeader}"><a
-					href="computers${params.companyName}">Company</a></th>
+					href="computers.htm${params.companyName}">Company</a></th>
 			</tr>
 		</thead>
 
@@ -58,7 +58,7 @@
 
 			<c:forEach items="${computers}" var="computer">
 				<tr>
-					<td><a href="update?computerId=${computer.computerId}">${computer.name}</a></td>
+					<td><a href="update.htm?computerId=${computer.computerId}">${computer.name}</a></td>
 					<td><c:choose>
 							<c:when test="${computer.introduced eq null}">
 								<em>-</em>
