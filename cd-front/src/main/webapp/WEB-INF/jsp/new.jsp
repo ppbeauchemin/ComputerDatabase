@@ -1,3 +1,4 @@
+<%@page import="com.excilys.formation.utils.Var"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -14,8 +15,8 @@
 <body>
 	<header class="topbar">
 	<h1 class="fill">
-		<a href="computers.htm">Play 2.0 sample application &mdash; Computer
-			database </a>
+		<a href="computers.htm">Play 2.0 sample application &mdash;
+			Computer database </a>
 	</h1>
 	</header>
 	<section id="main">
@@ -66,15 +67,16 @@
 			</div>
 		</fieldset>
 		<div class="actions">
-			<input type="submit" value="${mode} this computer" class="btn primary">
-			or <a href="computers.htm" class="btn">Cancel</a>
+			<input type="submit" value="${mode} this computer"
+				class="btn primary"> or <a href="computers.htm" class="btn">Cancel</a>
 		</div>
 	</form>
-	<c:if test="${mode eq \"updated\"}">
-	<form action="delete.htm?computerId=${computer.computerId}" method="POST" class="topRight">
-		<input type="submit" value="Delete this computer" class="btn danger">
-	</form>
-	</c:if>
-	</section>
+	<c:set var="UPDATE" value="<%=Var.UPDATE%>" /> <c:if
+		test="${mode eq UPDATE}">
+		<form action="delete.htm?computerId=${computer.computerId}"
+			method="POST" class="topRight">
+			<input type="submit" value="Delete this computer" class="btn danger">
+		</form>
+	</c:if> </section>
 </body>
 </html>

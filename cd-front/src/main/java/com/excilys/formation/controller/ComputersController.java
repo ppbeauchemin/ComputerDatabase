@@ -186,9 +186,9 @@ public class ComputersController {
 		session.setAttribute("errors", errors);
 
 		if (errors.isError()) {
-			if (mode.equals(Var.CREATED)) {
+			if (mode.equals(Var.CREATE)) {
 				return "redirect:new.htm";
-			} else if (mode.equals(Var.UPDATED)) {
+			} else if (mode.equals(Var.UPDATE)) {
 				return "redirect:update.htm?computerId="
 						+ session.getAttribute("computerId");
 			}
@@ -204,9 +204,9 @@ public class ComputersController {
 				computer.setIntroduced(introduced);
 				computer.setDiscontinued(discontinued);
 				computer.setCompany(company);
-				if (mode.equals(Var.CREATED)) {
+				if (mode.equals(Var.CREATE)) {
 					computerDatabaseService.saveComputer(computer);
-				} else if (mode.equals(Var.UPDATED)) {
+				} else if (mode.equals(Var.UPDATE)) {
 					long computerId = (long) session.getAttribute("computerId");
 					computer.setComputerId(computerId);
 					computerDatabaseService.updateComputer(computer);

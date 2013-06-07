@@ -39,7 +39,7 @@ public class NewController {
 			e.printStackTrace();
 		}
 		session.setAttribute("computer", new Computer());
-		session.setAttribute("mode", Var.CREATED);
+		session.setAttribute("mode", Var.CREATE);
 		return "new";
 
 	}

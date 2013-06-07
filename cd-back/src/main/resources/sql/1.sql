@@ -23,19 +23,3 @@ create sequence computer_seq start with 1000;
 
 alter table computer add constraint fk_computer_company_1 foreign key (company_id) references company (id) on delete restrict on update restrict;
 create index ix_computer_company_1 on computer (company_id);
-
-
-# --- !Downs
-
-# --- SET REFERENTIAL_INTEGRITY FALSE;
-
-# --- drop table if exists company;
-
-# --- drop table if exists computer;
-
-# --- SET REFERENTIAL_INTEGRITY TRUE;
-
-# --- drop sequence if exists company_seq;
-
-# --- drop sequence if exists computer_seq;
-

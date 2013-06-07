@@ -202,7 +202,7 @@ insert into computer (id,name,introduced,discontinued,company_id) values (154,'S
 insert into computer (id,name,introduced,discontinued,company_id) values (155,'Super Famicom',null,null,null);
 insert into computer (id,name,introduced,discontinued,company_id) values (156,'Nintendo GameCube',null,null,24);
 insert into computer (id,name,introduced,discontinued,company_id) values (157,'Game Boy line',null,null,null);
-insert into computer (id,name,introduced,discontinued,company_id) values (158,'PlayStation','1994-12-03',null,17);
+insert into computer (id,name,introduced,discontin/update.htm?computerId=20000000001ued,company_id) values (158,'PlayStation','1994-12-03',null,17);
 insert into computer (id,name,introduced,discontinued,company_id) values (159,'PlayStation 2','2000-03-24',null,17);
 insert into computer (id,name,introduced,discontinued,company_id) values (160,'Game & Watch',null,null,24);
 insert into computer (id,name,introduced,discontinued,company_id) values (161,'EDSAC',null,null,null);

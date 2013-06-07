@@ -34,7 +34,7 @@ public class UpdateController {
 		}
 		session.setAttribute("computer", computer);
 		session.setAttribute("computerId", computerId);
-		session.setAttribute("mode", Var.UPDATED);
+		session.setAttribute("mode", Var.UPDATE);
 		return "new";
 	}
 }

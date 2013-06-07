@@ -28,7 +28,7 @@ public class DeleteController {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		session.setAttribute("mode", Var.DELETED);
+		session.setAttribute("mode", Var.DELETE);
 		session.setAttribute("newComputer", "");
 		return "redirect:computers.htm";
 	}

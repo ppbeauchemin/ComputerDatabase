@@ -1,3 +1,4 @@
+<%@page import="com.excilys.formation.utils.Var"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
@@ -12,7 +13,6 @@
 	href="./css/main.css">
 </head>
 <body>
-
 	<header class="topbar">
 	<h1 class="fill">
 		<a href="computers.htm">Play 2.0 sample application &mdash; Computer
@@ -26,7 +26,7 @@
 
 	<c:if test="${newComputer ne null}">
 		<div class="alert-message warning">
-			<strong>Done!</strong> Computer ${newComputer} has been ${mode}
+			<strong>Done!</strong> Computer ${newComputer} has been ${mode}d
 		</div>
 	</c:if>
 
