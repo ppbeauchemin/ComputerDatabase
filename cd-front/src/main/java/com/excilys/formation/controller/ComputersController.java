@@ -18,6 +18,7 @@ import com.excilys.formation.om.Computer;
 import com.excilys.formation.service.ComputerDatabaseService;
 import com.excilys.formation.utils.DateConverter;
 import com.excilys.formation.utils.Errors;
+import com.excilys.formation.utils.ParamConverter;
 import com.excilys.formation.utils.Params;
 import com.excilys.formation.utils.Var;
 
@@ -39,77 +40,14 @@ public class ComputersController {
 		session.setAttribute("errors", new Errors());
 
 		Params params = new Params();
+		Integer p = ParamConverter.getIntParameterOrDefault(request.getParameter("p"), 0);
+		String s = ParamConverter.getStringParameterOrDefault(request.getParameter("s"), "computer.name");
+		String o = ParamConverter.getStringParameterOrDefault(request.getParameter("o"), "asc");
+		String f = ParamConverter.getStringParameterOrDefault(request.getParameter("f"), "");
 
-		int p = 0;
-		if (request.getParameter("p") != null) {
-			p = Integer.parseInt(request.getParameter("p"));
-		}
-		String s = "computer.name";
-		if (request.getParameter("s") != null) {
-			s = request.getParameter("s");
-		}
-		String o = "asc";
-		if (request.getParameter("o") != null) {
-			o = request.getParameter("o");
-		}
-		String f = "";
-		if (request.getParameter("f") != null) {
-			f = request.getParameter("f");
-		}
-
-		int pPrev = p - 1;
-		int pNext = p + 1;
 		int pLimit = p * Var.MAXCOMPUTER;
 
-		params.concatPrevUrl("p=" + pPrev);
-		params.concatNextUrl("p=" + pNext);
-
-		if (o.equals("asc")) {
-			if (s.equals("computer.name")) {
-				params.concatName("?o=desc");
-				params.setNameHeader("headerSortUp");
-			} else if (s.equals("introduced")) {
-				params.concatIntroduced("&o=desc");
-				params.setIntroducedHeader("headerSortUp");
-				params.concatPrevUrl("&s=" + s);
-				params.concatNextUrl("&s=" + s);
-			} else if (s.equals("discontinued")) {
-				params.concatDiscontinued("&o=desc");
-				params.setDiscontinuedHeader("headerSortUp");
-				params.concatPrevUrl("&s=" + s);
-				params.concatNextUrl("&s=" + s);
-			} else if (s.equals("company.name")) {
-				params.concatCompanyName("&o=desc");
-				params.setCompanyNameHeader("headerSortUp");
-				params.concatPrevUrl("&s=" + s);
-				params.concatNextUrl("&s=" + s);
-			}
-		} else if (o.equals("desc")) {
-			params.concatPrevUrl("&o=" + o);
-			params.concatNextUrl("&o=" + o);
-			if (s.equals("computer.name")) {
-				params.setNameHeader("headerSortDown");
-			} else if (s.equals("introduced")) {
-				params.setIntroducedHeader("headerSortDown");
-			} else if (s.equals("discontinued")) {
-				params.setDiscontinuedHeader("headerSortDown");
-			} else if (s.equals("company.name")) {
-				params.setCompanyNameHeader("headerSortDown");
-			}
-		}
-
-		if (!f.isEmpty()) {
-			if (o.equals("asc") && s.equals("computer.name")) {
-				params.concatName("&f=" + f);
-			} else {
-				params.concatName("?f=" + f);
-			}
-			params.concatIntroduced("&f=" + f);
-			params.concatDiscontinued("&f=" + f);
-			params.concatCompanyName("&f=" + f);
-			params.concatPrevUrl("&f=" + f);
-			params.concatNextUrl("&f=" + f);
-		}
+		ParamConverter.setAllParams(params, p, s, o, f);
 
 		@SuppressWarnings("unchecked")
 		List<Computer> computers = (List<Computer>) request
