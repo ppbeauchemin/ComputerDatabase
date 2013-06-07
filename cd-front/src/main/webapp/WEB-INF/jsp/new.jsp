@@ -34,8 +34,7 @@
 				<div class="input">
 					<input type="text" id="introduced" name="introduced"
 						value="${computer.introduced}"> <span class="help-inline">Date
-						(&#x27;yyyy-MM-dd&#x27;) or DateTime (&#x27;yyyy-MM-dd
-						hh:mm:ss&#x27;)</span>
+						(&#x27;yyyy-MM-dd&#x27;)</span>
 				</div>
 			</div>
 			<div class="clearfix ${errors.discontinued}">
@@ -43,8 +42,7 @@
 				<div class="input">
 					<input type="text" id="discontinued" name="discontinued"
 						value="${computer.discontinued}"> <span
-						class="help-inline">Date (&#x27;yyyy-MM-dd&#x27;) or
-						DateTime (&#x27;yyyy-MM-dd hh:mm:ss&#x27;)</span>
+						class="help-inline">Date (&#x27;yyyy-MM-dd&#x27;)</span>
 				</div>
 			</div>
 			<div class="clearfix">
@@ -69,7 +67,7 @@
 		</fieldset>
 		<div class="actions">
 			<input type="submit" value="${mode} this computer" class="btn primary">
-			or <a href="computers" class="btn">Cancel</a>
+			or <a href="computers.htm" class="btn">Cancel</a>
 		</div>
 	</form>
 	<c:if test="${mode eq \"updated\"}">

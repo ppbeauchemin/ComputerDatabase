@@ -4,8 +4,8 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
 
+import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.Calendar;
 import java.util.List;
 
@@ -18,7 +18,7 @@ import com.excilys.formation.dao.impl.ComputerDaoImpl;
 import com.excilys.formation.om.Computer;
 
 public class ComputerDaoTests {
-	final static Timestamp timestamp = new Timestamp(Calendar.getInstance().getTimeInMillis());
+	final static Date date = new Date(Calendar.getInstance().getTimeInMillis());
 	ComputerDao computerDao;
 	Computer computer;
 
@@ -28,8 +28,8 @@ public class ComputerDaoTests {
 		computer = new Computer();
 		computer.setComputerId(9999999999l);
 		computer.setName("pp");
-		computer.setIntroduced(timestamp);
-		computer.setDiscontinued(timestamp);
+		computer.setIntroduced(date);
+		computer.setDiscontinued(date);
 		computer.setCompany(null);
 		computerDao.saveComputer(computer);
 	}
@@ -76,8 +76,8 @@ public class ComputerDaoTests {
 		Computer computerSaved = new Computer();
 		computerSaved.setComputerId(19999999999l);
 		computerSaved.setName("ouais");
-		computerSaved.setIntroduced(timestamp);
-		computerSaved.setDiscontinued(timestamp);
+		computerSaved.setIntroduced(date);
+		computerSaved.setDiscontinued(date);
 		computerSaved.setCompany(null);
 		computerDao.saveComputer(computerSaved);
 		Computer computerFinded = computerDao.getComputerById(19999999999l);

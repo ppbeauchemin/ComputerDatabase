@@ -1,7 +1,7 @@
 package com.excilys.formation.om;
 
 import java.io.Serializable;
-import java.sql.Timestamp;
+import java.sql.Date;
 
 public class Computer implements Serializable {
 	/**
@@ -10,8 +10,8 @@ public class Computer implements Serializable {
 	private static final long serialVersionUID = -1837900460007604101L;
 	private long computerId;
 	private String name;
-	private Timestamp introduced;
-	private Timestamp discontinued;
+	private Date introduced;
+	private Date discontinued;
 	private Company company;
 
 	public long getComputerId() {
@@ -30,25 +30,19 @@ public class Computer implements Serializable {
 		this.name = name;
 	}
 
-	public Timestamp getIntroduced() {
+	public Date getIntroduced() {
 		return introduced;
 	}
 
-	public void setIntroduced(Timestamp introduced) {
-		if (introduced != null) {
-			introduced.setNanos(0);
-		}
+	public void setIntroduced(Date introduced) {
 		this.introduced = introduced;
 	}
 
-	public Timestamp getDiscontinued() {
+	public Date getDiscontinued() {
 		return discontinued;
 	}
 
-	public void setDiscontinued(Timestamp discontinued) {
-		if (discontinued != null) {
-			discontinued.setNanos(0);
-		}
+	public void setDiscontinued(Date discontinued) {
 		this.discontinued = discontinued;
 	}
 

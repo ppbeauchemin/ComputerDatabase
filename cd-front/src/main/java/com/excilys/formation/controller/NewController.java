@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.excilys.formation.om.Company;
+import com.excilys.formation.om.Computer;
 import com.excilys.formation.service.ComputerDatabaseService;
 import com.excilys.formation.utils.Var;
 
@@ -37,6 +38,7 @@ public class NewController {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+		session.setAttribute("computer", new Computer());
 		session.setAttribute("mode", Var.CREATED);
 		return "new";
 

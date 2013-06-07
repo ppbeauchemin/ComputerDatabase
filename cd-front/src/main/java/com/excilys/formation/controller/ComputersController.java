@@ -1,7 +1,7 @@
 package com.excilys.formation.controller;
 
+import java.sql.Date;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,9 +16,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.excilys.formation.om.Company;
 import com.excilys.formation.om.Computer;
 import com.excilys.formation.service.ComputerDatabaseService;
+import com.excilys.formation.utils.DateConverter;
 import com.excilys.formation.utils.Errors;
 import com.excilys.formation.utils.Params;
-import com.excilys.formation.utils.TimestampConverter;
 import com.excilys.formation.utils.Var;
 
 @Controller
@@ -156,25 +156,25 @@ public class ComputersController {
 		String name = request.getParameter("name");
 		String sIntroduced = request.getParameter("introduced");
 		String sDiscontinued = request.getParameter("discontinued");
-		Timestamp introduced = null;
-		Timestamp discontinued = null;
+		Date introduced = null;
+		Date discontinued = null;
 
 		if (name == null || name.isEmpty()) {
 			errors.setName(Var.ERROR);
 		}
 
-		Object introducedReturn = TimestampConverter.convert(sIntroduced);
+		Object introducedReturn = DateConverter.convert(sIntroduced);
 		if (introducedReturn != null && introducedReturn.equals(Var.ERROR)) {
 			errors.setIntroduced(Var.ERROR);
 		} else {
-			introduced = (Timestamp) introducedReturn;
+			introduced = (Date) introducedReturn;
 		}
 
-		Object discontinuedReturn = TimestampConverter.convert(sDiscontinued);
+		Object discontinuedReturn = DateConverter.convert(sDiscontinued);
 		if (discontinuedReturn != null && discontinuedReturn.equals(Var.ERROR)) {
 			errors.setDiscontinued(Var.ERROR);
 		} else {
-			discontinued = (Timestamp) discontinuedReturn;
+			discontinued = (Date) discontinuedReturn;
 		}
 
 		Long company_id = null;
@@ -187,9 +187,9 @@ public class ComputersController {
 
 		if (errors.isError()) {
 			if (mode.equals(Var.CREATED)) {
-				return "new.htm";
+				return "redirect:new.htm";
 			} else if (mode.equals(Var.UPDATED)) {
-				return "update.htm?computerId="
+				return "redirect:update.htm?computerId="
 						+ session.getAttribute("computerId");
 			}
 		} else {

@@ -32,8 +32,8 @@ public class ComputerDaoImpl implements ComputerDao {
 			computer = new Computer();
 			computer.setComputerId(rs.getLong("computer.id"));
 			computer.setName(rs.getString("computer.name"));
-			computer.setIntroduced(rs.getTimestamp("computer.introduced"));
-			computer.setDiscontinued(rs.getTimestamp("computer.discontinued"));
+			computer.setIntroduced(rs.getDate("computer.introduced"));
+			computer.setDiscontinued(rs.getDate("computer.discontinued"));
 			if (rs.getLong("company.id") != 0) {
 				company = new Company();
 				company.setCompanyId(rs.getLong("company.id"));
@@ -63,8 +63,8 @@ public class ComputerDaoImpl implements ComputerDao {
 			computer = new Computer();
 			computer.setComputerId(rs.getLong("id"));
 			computer.setName(rs.getString("name"));
-			computer.setIntroduced(rs.getTimestamp("introduced"));
-			computer.setDiscontinued(rs.getTimestamp("discontinued"));
+			computer.setIntroduced(rs.getDate("introduced"));
+			computer.setDiscontinued(rs.getDate("discontinued"));
 			if (rs.getLong("company.id") != 0) {
 				company = new Company();
 				company.setCompanyId(rs.getLong("company.id"));
@@ -91,8 +91,8 @@ public class ComputerDaoImpl implements ComputerDao {
 			computer = new Computer();
 			computer.setComputerId(rs.getLong("computer.id"));
 			computer.setName(rs.getString("name"));
-			computer.setIntroduced(rs.getTimestamp("computer.introduced"));
-			computer.setDiscontinued(rs.getTimestamp("computer.discontinued"));
+			computer.setIntroduced(rs.getDate("computer.introduced"));
+			computer.setDiscontinued(rs.getDate("computer.discontinued"));
 			if (rs.getLong("company.id") != 0) {
 				company = new Company();
 				company.setCompanyId(rs.getLong("company.id"));
@@ -122,8 +122,8 @@ public class ComputerDaoImpl implements ComputerDao {
 			computer = new Computer();
 			computer.setComputerId(rs.getLong("id"));
 			computer.setName(rs.getString("name"));
-			computer.setIntroduced(rs.getTimestamp("introduced"));
-			computer.setDiscontinued(rs.getTimestamp("discontinued"));
+			computer.setIntroduced(rs.getDate("introduced"));
+			computer.setDiscontinued(rs.getDate("discontinued"));
 			if (rs.getLong("company.id") != 0) {
 				company = new Company();
 				company.setCompanyId(rs.getLong("company.id"));
@@ -153,8 +153,8 @@ public class ComputerDaoImpl implements ComputerDao {
 		PreparedStatement ps = conn.prepareStatement(SAVE_COMPUTER);
 		ps.setLong(1, computer.getComputerId());
 		ps.setString(2, computer.getName());
-		ps.setTimestamp(3, computer.getIntroduced());
-		ps.setTimestamp(4, computer.getDiscontinued());
+		ps.setDate(3, computer.getIntroduced());
+		ps.setDate(4, computer.getDiscontinued());
 		if (computer.getCompany() != null) {
 			ps.setLong(5, computer.getCompany().getCompanyId());
 		} else {
@@ -170,8 +170,8 @@ public class ComputerDaoImpl implements ComputerDao {
 		conn = Conn.getConnection();
 		PreparedStatement ps = conn.prepareStatement(UPDATE_COMPUTER);
 		ps.setString(1, computer.getName());
-		ps.setTimestamp(2, computer.getIntroduced());
-		ps.setTimestamp(3, computer.getDiscontinued());
+		ps.setDate(2, computer.getIntroduced());
+		ps.setDate(3, computer.getDiscontinued());
 		if (computer.getCompany() != null) {
 			ps.setLong(4, computer.getCompany().getCompanyId());
 		} else {

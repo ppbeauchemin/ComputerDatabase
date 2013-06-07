@@ -2,7 +2,7 @@ package com.excilys.formation.test.model;
 
 import static org.junit.Assert.assertEquals;
 
-import java.sql.Timestamp;
+import java.sql.Date;
 
 import org.junit.After;
 import org.junit.Before;
@@ -38,14 +38,14 @@ public class ComputerTests {
 	
 	@Test
 	public void introducedTest() {
-		Timestamp d = new Timestamp(5468465165454L);
+		Date d = new Date(5468465165454L);
 		pc.setIntroduced(d);
 		assertEquals(d, pc.getIntroduced());
 	}
 	
 	@Test
 	public void discontinuedTest() {
-		Timestamp d = new Timestamp(5468465165454L);
+		Date d = new Date(5468465165454L);
 		pc.setDiscontinued(d);
 		assertEquals(d, pc.getDiscontinued());
 	}
