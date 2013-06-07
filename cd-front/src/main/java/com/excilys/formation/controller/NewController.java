@@ -27,14 +27,14 @@ public class NewController {
 	public String doGet(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		@SuppressWarnings("unchecked")
-		List<Company> companies = (List<Company>) session
+		List<Company> companies = (List<Company>) request
 				.getAttribute("companies");
 		if (companies == null || companies.isEmpty()) {
 			companies = new ArrayList<Company>();
 		}
 		try {
 			companies = computerDatabaseService.findAllCompanies();
-			session.setAttribute("companies", companies);
+			request.setAttribute("companies", companies);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}

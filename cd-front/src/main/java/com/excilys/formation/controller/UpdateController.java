@@ -27,7 +27,7 @@ public class UpdateController {
 		Computer computer = new Computer();
 		try {
 			computer = computerDatabaseService.getComputerById(computerId);
-			session.setAttribute("companies",
+			request.setAttribute("companies",
 					computerDatabaseService.findAllCompanies());
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();

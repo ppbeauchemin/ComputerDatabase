@@ -112,7 +112,7 @@ public class ComputersController {
 		}
 
 		@SuppressWarnings("unchecked")
-		List<Computer> computers = (List<Computer>) session
+		List<Computer> computers = (List<Computer>) request
 				.getAttribute("computers");
 		if (computers == null || computers.isEmpty()) {
 			computers = new ArrayList<Computer>();
@@ -125,11 +125,11 @@ public class ComputersController {
 				computers = computerDatabaseService.findAllComputersLimited(s,
 						o, pLimit, Var.MAXCOMPUTER);
 			}
-			session.setAttribute("computers", computers);
+			request.setAttribute("computers", computers);
 			int nbComputers = computerDatabaseService.countComputers(f);
-			session.setAttribute("nbComputers", nbComputers);
-			session.setAttribute("maxcomputer", pLimit + Var.MAXCOMPUTER);
-			session.setAttribute("indexcomputer", pLimit + 1);
+			request.setAttribute("nbComputers", nbComputers);
+			request.setAttribute("maxcomputer", pLimit + Var.MAXCOMPUTER);
+			request.setAttribute("indexcomputer", pLimit + 1);
 			params.concatPrevUrl("\"");
 			params.concatNextUrl("\"");
 			if (p == 0) {
@@ -139,9 +139,9 @@ public class ComputersController {
 			if (pLimit + Var.MAXCOMPUTER >= nbComputers) {
 				params.setNextDisabled(Var.DISABLED);
 				params.setNextUrl("");
-				session.setAttribute("maxcomputer", nbComputers);
+				request.setAttribute("maxcomputer", nbComputers);
 			}
-			session.setAttribute("params", params);
+			request.setAttribute("params", params);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
