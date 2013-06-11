@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,10 +22,11 @@ public class UpdateController {
 	private ComputerDatabaseService computerDatabaseService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String doGet(HttpServletRequest request) {
+	public String get(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
 		long computerId = Long.parseLong(request.getParameter("computerId"));
 		Computer computer = new Computer();
+
 		try {
 			computer = computerDatabaseService.getComputerById(computerId);
 			request.setAttribute("companies",
@@ -32,7 +34,7 @@ public class UpdateController {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		session.setAttribute("computer", computer);
+		modelMap.addAttribute("computer", computer);
 		session.setAttribute("computerId", computerId);
 		session.setAttribute("mode", Var.UPDATE);
 		return "new";

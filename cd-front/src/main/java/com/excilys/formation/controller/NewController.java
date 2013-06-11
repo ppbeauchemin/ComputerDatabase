@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -24,24 +25,18 @@ public class NewController {
 	private ComputerDatabaseService computerDatabaseService;
 
 	@RequestMapping(method = RequestMethod.GET)
-	public String doGet(HttpServletRequest request) {
+	public String get(HttpServletRequest request, ModelMap modelMap) {
 		HttpSession session = request.getSession();
-		@SuppressWarnings("unchecked")
-		List<Company> companies = (List<Company>) request
-				.getAttribute("companies");
-		if (companies == null || companies.isEmpty()) {
-			companies = new ArrayList<Company>();
-		}
+		modelMap.addAttribute("computer", new Computer());
+		List<Company> companies = new ArrayList<Company>();
 		try {
 			companies = computerDatabaseService.findAllCompanies();
-			request.setAttribute("companies", companies);
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
-		session.setAttribute("computer", new Computer());
+		modelMap.addAttribute("companies", companies);
 		session.setAttribute("mode", Var.CREATE);
 		return "new";
-
 	}
 
 }

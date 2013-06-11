@@ -3,14 +3,22 @@ package com.excilys.formation.om;
 import java.io.Serializable;
 import java.sql.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springmodules.validation.bean.conf.loader.annotation.handler.Length;
+import org.springmodules.validation.bean.conf.loader.annotation.handler.NotBlank;
+
 public class Computer implements Serializable {
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -1837900460007604101L;
 	private long computerId;
+	@NotBlank
+    @Length(min = 1, max = 80)
 	private String name;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date introduced;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date discontinued;
 	private Company company;
 
