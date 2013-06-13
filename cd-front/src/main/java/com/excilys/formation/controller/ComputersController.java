@@ -1,7 +1,6 @@
 package com.excilys.formation.controller;
 
 import java.sql.Date;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -65,18 +64,14 @@ public class ComputersController {
 			}
 		}
 
-		try {
-			if (mode.equals(Var.CREATE)) {
-				computerDatabaseService.saveComputer(c);
-			} else if (mode.equals(Var.UPDATE)) {
-				long computerId = (long) session.getAttribute("computerId");
-				c.setComputerId(computerId);
-				computerDatabaseService.updateComputer(c);
-			}
-			session.setAttribute("newComputer", name);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+		if (mode.equals(Var.CREATE)) {
+			computerDatabaseService.saveComputer(c);
+		} else if (mode.equals(Var.UPDATE)) {
+			long computerId = (long) session.getAttribute("computerId");
+			c.setComputerId(computerId);
+			computerDatabaseService.updateComputer(c);
 		}
+		session.setAttribute("newComputer", name);
 
 		return "redirect:computers.htm";
 
@@ -113,34 +108,32 @@ public class ComputersController {
 		if (computers == null || computers.isEmpty()) {
 			computers = new ArrayList<Computer>();
 		}
-		try {
-			if (!f.isEmpty()) {
-				computers = computerDatabaseService.getComputersByName(f, s, o,
-						pLimit, Var.MAXCOMPUTER);
-			} else {
-				computers = computerDatabaseService.findAllComputersLimited(s,
-						o, pLimit, Var.MAXCOMPUTER);
-			}
-			request.setAttribute("computers", computers);
-			int nbComputers = computerDatabaseService.countComputers(f);
-			request.setAttribute("nbComputers", nbComputers);
-			request.setAttribute("maxcomputer", pLimit + Var.MAXCOMPUTER);
-			request.setAttribute("indexcomputer", pLimit + 1);
-			params.concatPrevUrl("\"");
-			params.concatNextUrl("\"");
-			if (p == 0) {
-				params.setPrevDisabled(Var.DISABLED);
-				params.setPrevUrl("");
-			}
-			if (pLimit + Var.MAXCOMPUTER >= nbComputers) {
-				params.setNextDisabled(Var.DISABLED);
-				params.setNextUrl("");
-				request.setAttribute("maxcomputer", nbComputers);
-			}
-			request.setAttribute("params", params);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
+
+		if (!f.isEmpty()) {
+			computers = computerDatabaseService.getComputersByName(f, s, o,
+					pLimit, Var.MAXCOMPUTER);
+		} else {
+			computers = computerDatabaseService.findAllComputersLimited(s, o,
+					pLimit, Var.MAXCOMPUTER);
 		}
+		request.setAttribute("computers", computers);
+		int nbComputers = computerDatabaseService.countComputers(f);
+		request.setAttribute("nbComputers", nbComputers);
+		request.setAttribute("maxcomputer", pLimit + Var.MAXCOMPUTER);
+		request.setAttribute("indexcomputer", pLimit + 1);
+		params.concatPrevUrl("\"");
+		params.concatNextUrl("\"");
+		if (p == 0) {
+			params.setPrevDisabled(Var.DISABLED);
+			params.setPrevUrl("");
+		}
+		if (pLimit + Var.MAXCOMPUTER >= nbComputers) {
+			params.setNextDisabled(Var.DISABLED);
+			params.setNextUrl("");
+			request.setAttribute("maxcomputer", nbComputers);
+		}
+		request.setAttribute("params", params);
+
 		return "computers";
 	}
 

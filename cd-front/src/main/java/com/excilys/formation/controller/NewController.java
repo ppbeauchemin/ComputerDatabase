@@ -1,6 +1,5 @@
 package com.excilys.formation.controller;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,11 +28,7 @@ public class NewController {
 		HttpSession session = request.getSession();
 		modelMap.addAttribute("computer", new Computer());
 		List<Company> companies = new ArrayList<Company>();
-		try {
-			companies = computerDatabaseService.findAllCompanies();
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+		companies = computerDatabaseService.findAllCompanies();
 		modelMap.addAttribute("companies", companies);
 		session.setAttribute("mode", Var.CREATE);
 		return "new";

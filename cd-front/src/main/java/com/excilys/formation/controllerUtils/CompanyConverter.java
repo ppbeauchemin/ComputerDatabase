@@ -1,7 +1,6 @@
 package com.excilys.formation.controllerUtils;
 
 import java.beans.PropertyEditorSupport;
-import java.sql.SQLException;
 
 import com.excilys.formation.om.Company;
 import com.excilys.formation.service.ComputerDatabaseService;
@@ -28,11 +27,7 @@ public class CompanyConverter extends PropertyEditorSupport {
 		if (text != null && !text.trim().isEmpty()) {
 			int companyId = Integer.parseInt(text);
 			Company company = null;
-			try {
-				company = computerDatabaseService.getCompanyById(companyId);
-			} catch (ClassNotFoundException | SQLException e) {
-				e.printStackTrace();
-			}
+			company = computerDatabaseService.getCompanyById(companyId);
 			setValue(company);
 		}
 	}

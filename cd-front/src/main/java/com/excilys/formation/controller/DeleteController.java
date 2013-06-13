@@ -1,7 +1,5 @@
 package com.excilys.formation.controller;
 
-import java.sql.SQLException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -18,16 +16,12 @@ import com.excilys.formation.utils.Var;
 public class DeleteController {
 	@Autowired
 	private ComputerDatabaseService computerDatabaseService;
-	
+
 	@RequestMapping(method = RequestMethod.POST)
 	public String doPost(HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		long computerId = Long.parseLong(request.getParameter("computerId"));
-		try {
-			computerDatabaseService.deleteComputerById(computerId);
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+		computerDatabaseService.deleteComputerById(computerId);
 		session.setAttribute("mode", Var.DELETE);
 		session.setAttribute("newComputer", "");
 		return "redirect:computers.htm";

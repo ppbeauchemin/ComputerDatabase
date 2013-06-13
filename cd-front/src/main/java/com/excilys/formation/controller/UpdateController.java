@@ -1,7 +1,5 @@
 package com.excilys.formation.controller;
 
-import java.sql.SQLException;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -26,14 +24,9 @@ public class UpdateController {
 		HttpSession session = request.getSession();
 		long computerId = Long.parseLong(request.getParameter("computerId"));
 		Computer computer = new Computer();
-
-		try {
-			computer = computerDatabaseService.getComputerById(computerId);
-			request.setAttribute("companies",
-					computerDatabaseService.findAllCompanies());
-		} catch (ClassNotFoundException | SQLException e) {
-			e.printStackTrace();
-		}
+		computer = computerDatabaseService.getComputerById(computerId);
+		request.setAttribute("companies",
+				computerDatabaseService.findAllCompanies());
 		modelMap.addAttribute("computer", computer);
 		session.setAttribute("computerId", computerId);
 		session.setAttribute("mode", Var.UPDATE);
