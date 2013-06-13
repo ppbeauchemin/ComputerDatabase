@@ -1,6 +1,5 @@
 package com.excilys.formation.service.impl;
 
-import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,79 +26,69 @@ public class ComputerDatabaseServiceImpl implements ComputerDatabaseService {
 	}
 
 	@Override
-	public Computer getComputerById(long computerId)
-			throws ClassNotFoundException, SQLException {
+	public Computer getComputerById(long computerId) {
 		return computerDao.getComputerById(computerId);
 	}
 
 	@Override
-	public List<Computer> getComputersByName(String name, String s, String o, int p, int n)
-			throws ClassNotFoundException, SQLException {
+	public List<Computer> getComputersByName(String name, String s, String o,
+			int p, int n) {
 		return computerDao.getComputersByName(name, s, o, p, n);
 	}
 
 	@Override
-	public List<Computer> findAllComputers() throws ClassNotFoundException,
-			SQLException {
+	public List<Computer> findAllComputers() {
 		return computerDao.findAllComputers();
 	}
 
 	@Override
 	public List<Computer> findAllComputersLimited(String s, String o, int p,
-			int n) throws ClassNotFoundException, SQLException {
+			int n) {
 		return computerDao.findAllComputersLimited(s, o, p, n);
 	}
 
 	@Override
-	public int countComputers(String name) throws ClassNotFoundException, SQLException {
+	public int countComputers(String name) {
 		return computerDao.countComputers(name);
 	}
 
 	@Override
-	public void saveComputer(Computer computer) throws ClassNotFoundException,
-			SQLException {
+	public void saveComputer(Computer computer) {
 		computerDao.saveComputer(computer);
 	}
 
 	@Override
-	public void updateComputer(Computer computer)
-			throws ClassNotFoundException, SQLException {
+	public void updateComputer(Computer computer) {
 		computerDao.updateComputer(computer);
 	}
 
 	@Override
-	public void deleteComputerById(long computerId)
-			throws ClassNotFoundException, SQLException {
+	public void deleteComputerById(long computerId) {
 		computerDao.deleteComputerById(computerId);
 	}
 
 	@Override
-	public Company getCompanyById(long companyId)
-			throws ClassNotFoundException, SQLException {
+	public Company getCompanyById(long companyId) {
 		return companyDao.getCompanyById(companyId);
 	}
 
 	@Override
-	public List<Company> findAllCompanies() throws ClassNotFoundException,
-			SQLException {
+	public List<Company> findAllCompanies() {
 		return companyDao.findAllCompanies();
 	}
 
 	@Override
-	public void saveCompany(Company company) throws ClassNotFoundException,
-			SQLException {
+	public void saveCompany(Company company) {
 		companyDao.saveCompany(company);
 	}
 
 	@Override
-	public void updateCompany(Company company) throws ClassNotFoundException,
-			SQLException {
+	public void updateCompany(Company company) {
 		companyDao.updateCompany(company);
 	}
 
 	@Override
-	public void deleteCompanyById(long companyId)
-			throws ClassNotFoundException, SQLException {
+	public void deleteCompanyById(long companyId) {
 		companyDao.deleteCompanyById(companyId);
 	}
 
