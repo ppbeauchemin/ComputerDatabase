@@ -32,11 +32,6 @@ public class ComputersController {
 	@Autowired
 	private ComputerDatabaseService computerDatabaseService;
 
-	public void setComputerDatabaseService(
-			ComputerDatabaseService computerDatabaseService) {
-		this.computerDatabaseService = computerDatabaseService;
-	}
-
 	@InitBinder
 	public void dateBinder(WebDataBinder binder) {
 		binder.registerCustomEditor(Date.class, new DateConverter());
@@ -135,6 +130,15 @@ public class ComputersController {
 		request.setAttribute("params", params);
 
 		return "computers";
+	}
+
+	public ComputerDatabaseService getComputerDatabaseService() {
+		return computerDatabaseService;
+	}
+
+	public void setComputerDatabaseService(
+			ComputerDatabaseService computerDatabaseService) {
+		this.computerDatabaseService = computerDatabaseService;
 	}
 
 }

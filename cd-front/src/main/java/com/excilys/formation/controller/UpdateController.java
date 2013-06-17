@@ -32,4 +32,14 @@ public class UpdateController {
 		session.setAttribute("mode", Var.UPDATE);
 		return "new";
 	}
+
+	public ComputerDatabaseService getComputerDatabaseService() {
+		return computerDatabaseService;
+	}
+
+	public void setComputerDatabaseService(
+			ComputerDatabaseService computerDatabaseService) {
+		this.computerDatabaseService = computerDatabaseService;
+	}
+
 }

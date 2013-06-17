@@ -27,4 +27,13 @@ public class DeleteController {
 		return "redirect:computers.htm";
 	}
 
+	public ComputerDatabaseService getComputerDatabaseService() {
+		return computerDatabaseService;
+	}
+
+	public void setComputerDatabaseService(
+			ComputerDatabaseService computerDatabaseService) {
+		this.computerDatabaseService = computerDatabaseService;
+	}
+
 }

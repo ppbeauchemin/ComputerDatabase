@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.excilys.formation.conn.Conn;
@@ -15,6 +17,8 @@ import com.excilys.formation.om.Company;
 
 @Repository
 public class CompanyDaoImpl implements CompanyDao {
+	@Autowired
+	private SessionFactory sessionFactory;
 	private Connection conn;
 
 	@Override
@@ -97,6 +101,14 @@ public class CompanyDaoImpl implements CompanyDao {
 		} catch (ClassNotFoundException | SQLException e) {
 			e.printStackTrace();
 		}
+	}
+
+	public SessionFactory getSessionFactory() {
+		return sessionFactory;
+	}
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
 	}
 
 	public Connection getConn() {

@@ -7,8 +7,6 @@ import org.springframework.stereotype.Service;
 
 import com.excilys.formation.dao.CompanyDao;
 import com.excilys.formation.dao.ComputerDao;
-import com.excilys.formation.dao.impl.CompanyDaoImpl;
-import com.excilys.formation.dao.impl.ComputerDaoImpl;
 import com.excilys.formation.om.Company;
 import com.excilys.formation.om.Computer;
 import com.excilys.formation.service.ComputerDatabaseService;
@@ -19,11 +17,6 @@ public class ComputerDatabaseServiceImpl implements ComputerDatabaseService {
 	private CompanyDao companyDao;
 	@Autowired
 	private ComputerDao computerDao;
-
-	public ComputerDatabaseServiceImpl() {
-		companyDao = new CompanyDaoImpl();
-		computerDao = new ComputerDaoImpl();
-	}
 
 	@Override
 	public Computer getComputerById(long computerId) {

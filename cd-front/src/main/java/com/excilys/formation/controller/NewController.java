@@ -34,4 +34,13 @@ public class NewController {
 		return "new";
 	}
 
+	public ComputerDatabaseService getComputerDatabaseService() {
+		return computerDatabaseService;
+	}
+
+	public void setComputerDatabaseService(
+			ComputerDatabaseService computerDatabaseService) {
+		this.computerDatabaseService = computerDatabaseService;
+	}
+
 }
