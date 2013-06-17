@@ -21,15 +21,15 @@ public class DateConverter extends PropertyEditorSupport {
 
 	@Override
 	public void setAsText(String text) throws IllegalArgumentException {
-		Date date = null;
 		if (text != null && !text.trim().isEmpty()
 				&& text.matches("[0-9]{4}-[0-9]{2}-[0-9]{2}")) {
 			try {
-				date = new Date(simpleDateFormat.parse(text).getTime());
+				setValue(new Date(simpleDateFormat.parse(text).getTime()));
 			} catch (ParseException e) {
 				e.printStackTrace();
 			}
+		} else if (text != null && !text.trim().isEmpty()) {
+			setValue(text);
 		}
-		setValue(date);
 	}
 }

@@ -1,5 +1,9 @@
 package com.excilys.formation.utils;
 
+import java.util.List;
+
+import org.springframework.validation.FieldError;
+
 public class Errors {
 	private String name;
 	private String introduced;
@@ -53,5 +57,27 @@ public class Errors {
 	public void setError(boolean error) {
 		this.error = error;
 	}
+
+	public void setAllErrors(List<FieldError> fieldErrors) {
+		for (FieldError fe : fieldErrors) {
+			if (fe.getField().equals("name")) {
+				this.setName(Var.ERROR);
+			}
+			if (fe.getField().equals("introduced")) {
+				this.setIntroduced(Var.ERROR);
+			}
+			if (fe.getField().equals("discontinued")) {
+				this.setDiscontinued(Var.ERROR);
+			}
+		}
+	}
+
+	@Override
+	public String toString() {
+		return "Errors [name=" + name + ", introduced=" + introduced
+				+ ", discontinued=" + discontinued + ", error=" + error + "]";
+	}
+	
+	
 
 }

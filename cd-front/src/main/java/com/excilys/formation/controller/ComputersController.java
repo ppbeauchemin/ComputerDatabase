@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -44,13 +45,15 @@ public class ComputersController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public String post(@Valid Computer c, BindingResult result,
-			HttpServletRequest request) {
+	public String post(@ModelAttribute @Valid Computer computer,
+			BindingResult result, HttpServletRequest request) {
 		HttpSession session = request.getSession();
 		String mode = (String) session.getAttribute("mode");
 		String name = request.getParameter("name");
-
 		if (result.hasErrors()) {
+			Errors errors = new Errors();
+			errors.setAllErrors(result.getFieldErrors());
+			session.setAttribute("errors", errors);
 			if (mode.equals(Var.CREATE)) {
 				return "redirect:new.htm";
 			} else if (mode.equals(Var.UPDATE)) {
@@ -60,11 +63,11 @@ public class ComputersController {
 		}
 
 		if (mode.equals(Var.CREATE)) {
-			computerDatabaseService.saveComputer(c);
+			computerDatabaseService.saveComputer(computer);
 		} else if (mode.equals(Var.UPDATE)) {
 			long computerId = (long) session.getAttribute("computerId");
-			c.setComputerId(computerId);
-			computerDatabaseService.updateComputer(c);
+			computer.setComputerId(computerId);
+			computerDatabaseService.updateComputer(computer);
 		}
 		session.setAttribute("newComputer", name);
 
