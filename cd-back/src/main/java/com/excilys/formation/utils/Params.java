@@ -18,7 +18,7 @@ public class Params {
 		this.name = "";
 		this.introduced = "?s=introduced";
 		this.discontinued = "?s=discontinued";
-		this.companyName = "?s=company.name";
+		this.companyName = "?s=company";
 		this.prevUrl = "href=\"computers.htm?";
 		this.nextUrl = "href=\"computers.htm?";
 	}

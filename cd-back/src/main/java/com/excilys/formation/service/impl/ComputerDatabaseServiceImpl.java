@@ -41,7 +41,7 @@ public class ComputerDatabaseServiceImpl implements ComputerDatabaseService {
 	}
 
 	@Override
-	public int countComputers(String name) {
+	public long countComputers(String name) {
 		return computerDao.countComputers(name);
 	}
 

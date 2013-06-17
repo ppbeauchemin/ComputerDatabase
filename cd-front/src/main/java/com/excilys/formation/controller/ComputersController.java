@@ -87,7 +87,7 @@ public class ComputersController {
 		Integer p = ParamConverter.getIntParameterOrDefault(
 				request.getParameter("p"), 0);
 		String s = ParamConverter.getStringParameterOrDefault(
-				request.getParameter("s"), "computer.name");
+				request.getParameter("s"), "name");
 		String o = ParamConverter.getStringParameterOrDefault(
 				request.getParameter("o"), "asc");
 		String f = ParamConverter.getStringParameterOrDefault(
@@ -112,7 +112,7 @@ public class ComputersController {
 					pLimit, Var.MAXCOMPUTER);
 		}
 		request.setAttribute("computers", computers);
-		int nbComputers = computerDatabaseService.countComputers(f);
+		long nbComputers = computerDatabaseService.countComputers(f);
 		request.setAttribute("nbComputers", nbComputers);
 		request.setAttribute("maxcomputer", pLimit + Var.MAXCOMPUTER);
 		request.setAttribute("indexcomputer", pLimit + 1);

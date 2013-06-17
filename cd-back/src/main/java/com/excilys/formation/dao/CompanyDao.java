@@ -3,9 +3,8 @@ package com.excilys.formation.dao;
 import java.util.List;
 
 import com.excilys.formation.om.Company;
-import com.excilys.formation.request.CompanyRequest;
 
-public interface CompanyDao extends CompanyRequest {
+public interface CompanyDao {
 	
 	public Company getCompanyById(long companyId);
 

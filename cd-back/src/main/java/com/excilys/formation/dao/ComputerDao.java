@@ -3,9 +3,8 @@ package com.excilys.formation.dao;
 import java.util.List;
 
 import com.excilys.formation.om.Computer;
-import com.excilys.formation.request.ComputerRequest;
 
-public interface ComputerDao extends ComputerRequest {
+public interface ComputerDao {
 		
 	public Computer getComputerById(long computerId);
 	
@@ -15,7 +14,7 @@ public interface ComputerDao extends ComputerRequest {
 	
 	public List<Computer> findAllComputersLimited(String s, String o, int p, int n);
 
-	public int countComputers(String name);
+	public long countComputers(String name);
 	
 	public void saveComputer(Computer computer);
 

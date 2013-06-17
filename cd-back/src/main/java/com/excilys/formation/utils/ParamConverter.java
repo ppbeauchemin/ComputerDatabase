@@ -23,7 +23,7 @@ public abstract class ParamConverter {
 		params.concatNextUrl("p=" + (p+1));
 
 		if (o.equals("asc")) {
-			if (s.equals("computer.name")) {
+			if (s.equals("name")) {
 				params.concatName("?o=desc");
 				params.setNameHeader("headerSortUp");
 			} else if (s.equals("introduced")) {
@@ -36,7 +36,7 @@ public abstract class ParamConverter {
 				params.setDiscontinuedHeader("headerSortUp");
 				params.concatPrevUrl("&s=" + s);
 				params.concatNextUrl("&s=" + s);
-			} else if (s.equals("company.name")) {
+			} else if (s.equals("company")) {
 				params.concatCompanyName("&o=desc");
 				params.setCompanyNameHeader("headerSortUp");
 				params.concatPrevUrl("&s=" + s);
@@ -45,19 +45,19 @@ public abstract class ParamConverter {
 		} else if (o.equals("desc")) {
 			params.concatPrevUrl("&o=" + o);
 			params.concatNextUrl("&o=" + o);
-			if (s.equals("computer.name")) {
+			if (s.equals("name")) {
 				params.setNameHeader("headerSortDown");
 			} else if (s.equals("introduced")) {
 				params.setIntroducedHeader("headerSortDown");
 			} else if (s.equals("discontinued")) {
 				params.setDiscontinuedHeader("headerSortDown");
-			} else if (s.equals("company.name")) {
+			} else if (s.equals("company")) {
 				params.setCompanyNameHeader("headerSortDown");
 			}
 		}
 
 		if (!f.isEmpty()) {
-			if (o.equals("asc") && s.equals("computer.name")) {
+			if (o.equals("asc") && s.equals("name")) {
 				params.concatName("&f=" + f);
 			} else {
 				params.concatName("?f=" + f);
